@@ -1,11 +1,16 @@
 describe('login de usuarios alura pic', () => {
 
     beforeEach(() => {
-        cy.visit('https://alura-fotos.herokuapp.com');
+        cy.visit('/')
+ 
+        //cy.intercept('POST', 'https://apialurapic.herokuapp.com/user/login', {
+        //    statusCode: 400
+        //}).as('stubPost')
     })
 
     it('fazer login com usuario valido', () => {
-        cy.login('flavio', '123')
+        cy.login(Cypress.env("userName"), Cypress.env("password"))
+        //cy.wait('@stubPost')
         cy.contains('a', '(Logout)').should('be.visible');
     })
 
